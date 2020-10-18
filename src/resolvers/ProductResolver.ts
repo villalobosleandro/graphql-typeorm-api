@@ -31,8 +31,6 @@ class ProductUpdateInput {
 export class ProductResolver {
   @Mutation(() => Product)
   async createProduct(
-    // @Arg("name") name: string,
-    // @Arg("quantity", () => Int) quantity: number
     @Arg("variables", () => ProductInput) variables: ProductInput
   ) {
     const newProduct = Product.create(variables);
@@ -55,7 +53,7 @@ export class ProductResolver {
   }
 
   @Query(() => [Product])
-  products() {
-    return Product.find();
+  async products() {
+    return await Product.find();
   }
 }
